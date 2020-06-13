@@ -72,19 +72,21 @@ This file will be imported by `config/index.js` while running on your computer l
 
 ---
 
-## eMarketplace was created by:
+## Contributors
 
 * Mike Gullo
-    * Email: <mike14747@oh.rr.com>
-    * Portfolio: [https://mike14747.github.io/](https://mike14747.github.io/)
-* Michelle William
-    * Email: <letscook1@hotmail.com>
-    * Github: [https://github.com/letscook1](https://github.com/letscook1)
-* Vincent Shury
-    * Email: <vinceshury@gmail.com>
-    * LinkedIn: [https://www.linkedin.com/in/vincent-shury/](https://www.linkedin.com/in/vincent-shury/)
-    * Github Portfolio: [https://vincent440.github.io/](https://vincent440.github.io/)
-    * Github Profile: [https://github.com/Vincent440](https://github.com/Vincent440) 
-* Link to the website is in the Github repository description [Here](#repo-meta-edit)
+  * Email: <mike14747@oh.rr.com>
+  * [Portfolio](https://mike14747.github.io/)
+  * [GitHub](https://github.com/mike14747)
 
-Email any of the contributors listed above for more info about this project.
+* Michelle William
+  * Email: <letscook1@hotmail.com>
+  * [GitHub](https://github.com/letscook1)
+
+* Vincent Shury
+  * Email: <vinceshury@gmail.com>
+  * [Portfolio](https://vshury.com/)
+  * [GitHub](https://github.com/Vincent440)
+  * [LinkedIn](https://www.linkedin.com/in/vincent-shury/)
+
+Email any of the contributors listed above for more info about this project
