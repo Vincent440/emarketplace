@@ -29,14 +29,14 @@
     "homepage": "https://github.com/letscook1/project2#readme",
     "dependencies": {
         "bcrypt": "^5.0.0",
-        "connect-session-sequelize": "^6.0.0",
+        "connect-session-sequelize": "^7.0.1",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
-        "express-handlebars": "^3.1.0",
+        "express-handlebars": "^5.1.0",
         "express-session": "^1.17.1",
-        "mysql2": "^2.0.1",
-        "passport": "^0.4.0",
-        "sequelize": "^5.21.2"
+        "mysql2": "^2.1.0",
+        "passport": "^0.4.1",
+        "sequelize": "^6.3.5"
     },
     "devDependencies": {
         "nodemon": "^2.0.4",
