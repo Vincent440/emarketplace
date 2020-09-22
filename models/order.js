@@ -1,17 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define('orders', {
-    shipping_cost: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+  const Order = sequelize.define(
+    'orders',
+    {
+      shipping_cost: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+      },
+      order_total: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+      }
     },
-    order_total: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+    {
+      freezeTableName: true
     }
-  }, {
-    freezeTableName: true
-  })
-  Order.associate = (models) => {
+  )
+  Order.associate = models => {
     Order.belongsTo(models.users, {
       foreignKey: { name: 'userId', allowNull: false },
       onDelete: 'cascade'

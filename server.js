@@ -15,16 +15,18 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
-app.use(session({
-  secret: 'asdwelhjt',
-  store: new SequelizeStore({
-    db: db.sequelize
-  }),
-  resave: false,
-  // proxy: true // if you do SSL outside of node.
-  saveUninitialized: false
-  // cookie: { secure: true }
-}))
+app.use(
+  session({
+    secret: 'asdwelhjt',
+    store: new SequelizeStore({
+      db: db.sequelize
+    }),
+    resave: false,
+    // proxy: true // if you do SSL outside of node.
+    saveUninitialized: false
+    // cookie: { secure: true }
+  })
+)
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -40,8 +42,13 @@ app.use(apiRoutes)
 const htmlRoutes = require('./controllers/htmlRoutes.js')
 app.use(htmlRoutes)
 
-db.sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`\nServer listening on: http://localhost:${PORT}`))
-}).catch((error) => {
-  console.log(error)
-})
+db.sequelize
+  .sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () =>
+      console.log(`\nServer listening on: http://localhost:${PORT}`)
+    )
+  })
+  .catch(error => {
+    console.log(error)
+  })

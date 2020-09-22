@@ -1,30 +1,34 @@
 module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('products', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
+  const Product = sequelize.define(
+    'products',
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      image_name: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+        allowNull: false
+      }
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    image_name: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
-    },
-    stock: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-      allowNull: false
+    {
+      freezeTableName: true
     }
-  }, {
-    freezeTableName: true
-  })
-  Product.associate = (models) => {
+  )
+  Product.associate = models => {
     Product.hasMany(models.reviews, {
       foreignKey: { name: 'productId', allowNull: false },
       onDelete: 'cascade'

@@ -2,106 +2,106 @@
 No media query for `xs` since this is the default in Bootstrap 
 0px - 576px styling 
 */
-#navbar-search-form{
-    width: 9rem;
+#navbar-search-form {
+  width: 9rem;
 }
 .read-only-form {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 /* ================================================================== */
 /* Table styling for the checkout/cart page */
 #name-row-head {
-    width: 42%;
+  width: 42%;
 }
 #each-cost-row-head {
-    width: 15%;
+  width: 15%;
 }
 #total-cost-row-head {
-    width: 18%;
+  width: 18%;
 }
 #update-row-head {
-    width: 18%;
+  width: 18%;
 }
 #delete-row-head {
-    width: 7%;
+  width: 7%;
 }
 /*
 576px - 768px styling
  Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    #name-row-head {
-        width: 40%;
-    }
-    #each-cost-row-head {
-        width: 20%;
-    }
-    #total-cost-row-head {
-        width: 15%;
-    }
-    #update-row-head {
-        width: 20%;
-    }
-    #delete-row-head {
-        width: 10%;
-    }
+  #name-row-head {
+    width: 40%;
+  }
+  #each-cost-row-head {
+    width: 20%;
+  }
+  #total-cost-row-head {
+    width: 15%;
+  }
+  #update-row-head {
+    width: 20%;
+  }
+  #delete-row-head {
+    width: 10%;
+  }
 }
 
 /*768px -992px
  Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-    #name-row-head {
-        width: 45%;
-    }
-    #each-cost-row-head {
-        width: 15%;
-    }
-    #total-cost-row-head {
-        width: 15%;
-    }
-    #update-row-head {
-        width: 10%;
-    }
-    #delete-row-head {
-        width: 10%;
-    }
+@media (min-width: 768px) {
+  #name-row-head {
+    width: 45%;
+  }
+  #each-cost-row-head {
+    width: 15%;
+  }
+  #total-cost-row-head {
+    width: 15%;
+  }
+  #update-row-head {
+    width: 10%;
+  }
+  #delete-row-head {
+    width: 10%;
+  }
 }
 /* 992px - 1200px styling
  Large devices (desktops, 992px and up) LG bootstrap */
 @media (min-width: 992px) {
-    #name-row-head {
-        width: 28%;
-    }
-    #each-cost-row-head {
-        width: 15%;
-    }
-    #total-cost-row-head {
-        width: 15%;
-    }
-    #update-row-head {
-        width: 14%;
-    }
-    #delete-row-head {
-        width: 10%;
-    }
+  #name-row-head {
+    width: 28%;
+  }
+  #each-cost-row-head {
+    width: 15%;
+  }
+  #total-cost-row-head {
+    width: 15%;
+  }
+  #update-row-head {
+    width: 14%;
+  }
+  #delete-row-head {
+    width: 10%;
+  }
 }
 
 /* 1200px and up
  Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    #name-row-head {
-        width: 38%;
-    }
-    #each-cost-row-head {
-        width: 15%;
-    }
-    #total-cost-row-head {
-        width: 15%;
-    }
-    #update-row-head {
-        width: 15%;
-    }
-    #delete-row-head {
-        width: 15%;
-    }
-} 
+  #name-row-head {
+    width: 38%;
+  }
+  #each-cost-row-head {
+    width: 15%;
+  }
+  #total-cost-row-head {
+    width: 15%;
+  }
+  #update-row-head {
+    width: 15%;
+  }
+  #delete-row-head {
+    width: 15%;
+  }
+}
