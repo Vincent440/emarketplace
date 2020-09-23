@@ -215,16 +215,16 @@ router.post('/api/account/login', (req, res) => {
             userId = data.id
             req.login(userId, err => {
               if (err) throw err
-              console.log('\nUser is being logged in!\n')
+              // console.log('\nUser is being logged in!\n')
               res.send('success').end()
             })
           } else {
-            console.log('\nPassword not valid!\n')
+            // console.log('\nPassword not valid!\n')
             res.send('Password not valid!').end()
           }
         })
       } else {
-        console.log('\nNo match found for the submitted username!\n')
+        // console.log('\nNo match found for the submitted username!\n')
         res.send('Username not found!').end()
       }
     })

@@ -28,22 +28,33 @@ To use this project, you'll need to do the following:
   - create a `.env` file with your MySQL Database password in the following format
     (this was included in the `.gitignore` file to prevent the password from being exposed on Github):
 
-  ```
-  DB_PASSWORD="your_database_password_here"
+  ```env
+  # Database Connection Url for connectioning to your local database. 
+  DEV_DATABASE_URL='mysql://[db_username]:[db_password]@[db_host]/[db_name]'
   ```
 
-This file will be imported by `config/index.js` while running on your computer locally because of the following changes to the `config/index.js` file.
+This file will be imported by `config/config.json` while running on your computer locally because of the following changes to the `config/config.json` file.
 
-    ```js
-    let sequelize;
-    if (config.use_env_variable) {
-        sequelize = new Sequelize(process.env[config.use_env_variable], config);
-    } else {
-        // assign the local password from the `.env` to a new password variable.
-        const password = process.env.DB_PASSWORD;
-        sequelize = new Sequelize(config.database, config.username,/*config.password is now*/ password, config);
+```json
+  {
+    "development": {
+      "use_env_variable": "DEVELOPMENT_DB_URL",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": null,
+      "database": "database_test",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "production": {
+      "use_env_variable": "JAWSDB_URL",
+      "dialect": "mysql"
     }
-    ```
+  }
+
+```
 
 - run 'server.js' to dynamically create the required tables
 - seed the newly created database tables with the `seeds.sql` file
@@ -60,20 +71,20 @@ This file will be imported by `config/index.js` while running on your computer l
 
 _Dependencies:_
 
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
-- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
-- [dotenv](https://www.npmjs.com/package/dotenv)
-- [express](https://www.npmjs.com/package/express)
-- [express-handlebars](https://www.npmjs.com/package/express-handlebars)
-- [express-session](https://www.npmjs.com/package/express-session)
-- [mysql2](https://www.npmjs.com/package/mysql2)
-- [passport](https://www.npmjs.com/package/passport)
-- [sequelize](https://www.npmjs.com/package/sequelize)
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - library to hash passwords.
+- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Sequelize SessionStore for Express/Connect 
+- [dotenv](https://www.npmjs.com/package/dotenv) - Loads environment variables from .env for nodejs projects.
+- [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node. 
+- [express-handlebars](https://www.npmjs.com/package/express-handlebars) - Handlebars view engine for Express
+- [express-session](https://www.npmjs.com/package/express-session) - session middleware for Express 
+- [mysql2](https://www.npmjs.com/package/mysql2) - MySQL client for Node.js
+- [passport](https://www.npmjs.com/package/passport) - Authentication for Node.js. 
+- [sequelize](https://www.npmjs.com/package/sequelize) - promise-based Node.js ORM
 
 _Devevelopment Dependencies:_
 
-- [Nodemon](https://www.npmjs.com/package/nodemon)
-- [Standard](https://www.npmjs.com/package/standard)
+- [nodemon](https://www.npmjs.com/package/nodemon) - Monitors for any changes and automatically restarts the server on `.js` save.
+- [prettier-standard](https://github.com/sheerun/prettier-standard#readme) - Project linting
 
 ---
 
