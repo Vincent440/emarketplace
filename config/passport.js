@@ -2,7 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const db = require('../models')
 
-// Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
+// Telling passport we want to use a Local Strategy. In other words, we want login with a username and password
 passport.use(
   new LocalStrategy((usernameToFind, password, done) => {
     // When a user tries to sign-in/login this code runs
@@ -10,27 +10,27 @@ passport.use(
       where: {
         username: usernameToFind
       }
-    }).then(dbUser => {
-      // If there's no user with the given username
-      if (!dbUser) {
-        return done(null, false, {
-          message: 'Incorrect username.'
-        })
-      }
-      // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validPassword(password)) {
-        return done(null, false, {
-          message: 'Incorrect password.'
-        })
-      }
-      // If none of the above, return the user without the attached hashed pw
-      const userObjectWithoutPassword = {
-        username: dbUser.username,
-        email: dbUser.email,
-        id: dbUser.id
-      }
-      return done(null, userObjectWithoutPassword)
     })
+      .then(dbUser => {
+        if (!dbUser) {
+          // If there's no user with the given username
+          return done(null, false, {
+            message: 'Incorrect username.'
+          })
+        }
+
+        if (!dbUser.validPassword(password)) {
+          // If there is a user with the given username, but the password the user gives us is incorrect
+          return done(null, false, {
+            message: 'Incorrect password.'
+          })
+        }
+
+        // otherwise return the user without the attached hashed pw
+        const { username, email, id } = dbUser
+        return done(null, { username, email, id })
+      })
+      .catch(dbError => console.log(dbError))
   })
 )
 
@@ -43,17 +43,14 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  // Deserialize takes a userId, and on success returns the userObject. 
+  // Deserialize takes a userId, and on success returns the userObject.
   db.User.findOne({
     where: { id }
   })
     .then(userData => {
-      const userObjectWithoutPassword = {
-        username: userData.username,
-        email: userData.email,
-        id: userData.id
-      }
-      return done(null, userObjectWithoutPassword)
+      // Returning the user object without hashed password
+      const { username, email, id } = userData
+      return done(null, { username, email, id })
     })
     .catch(dbError => {
       return console.log(dbError)

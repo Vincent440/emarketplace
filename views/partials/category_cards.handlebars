@@ -2,15 +2,15 @@
 <div class="col-10 col-md-8 col-lg-6 col-xl-4 mx-auto">
   <div class="card text-white p-1 m-2 text-center rounded-lg">
     <div class="card-header text-secondary shadow px-0 px-0 rounded-lg">
-      <h4 class="display-4">{{dataValues.name}}</h4>
+      <h4 class="display-4">{{name}}</h4>
     </div>
     <div class="card-body">
       {{!-- Will need to fill in src with the source from database --}}
-      <img src="../images/{{dataValues.image_name}}" class="category-image" alt="{{dataValues.name}} Display image">
-      <p class="card-text">{{dataValues.description}}</p>
+      <img src="../images/{{image_name}}" class="category-image" alt="{{name}} Display image">
+      <p class="card-text">{{description}}</p>
     </div>
     <div class="card-footer">
-      <a class="btn btn-primary stretched-link" href="/category/{{dataValues.id}}" title="Click to shop all items in {{dataValues.name}}"><i class="fas fa-arrow-circle-right"></i> Shop {{dataValues.name}} <i class="fas fa-arrow-circle-left"></i></a>
+      <a class="btn btn-primary stretched-link" href="/category/{{id}}" title="Click to shop all items in {{name}}"><i class="fas fa-arrow-circle-right"></i> Shop {{name}} <i class="fas fa-arrow-circle-left"></i></a>
     </div>
   </div>
 </div>

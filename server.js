@@ -2,8 +2,8 @@
 require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
+const expressHandlebars = require('express-handlebars')
 const passport = require('passport')
-const exphbs = require('express-handlebars')
 const SessionStore = require('connect-session-sequelize')(session.Store)
 const db = require('./models')
 const apiRoutes = require('./controllers/apiRoutes.js')
@@ -12,11 +12,11 @@ const htmlRoutes = require('./controllers/htmlRoutes.js')
 const PORT = process.env.PORT || 3000
 // In `.env` file add `SYNC_DB=true` to drop database tables.
 const dbSync = { force: process.env.SYNC_DB || false }
-
-const app = express()
 const sequelizeSessionStore = new SessionStore({ db: db.sequelize })
+const app = express()
 
-app.engine('handlebars', exphbs({ defaultLayout: 'user' }))
+app.engine('handlebars', expressHandlebars({ defaultLayout: 'user' }))
+
 app.set('view engine', 'handlebars')
 
 app.use(express.urlencoded({ extended: true }))

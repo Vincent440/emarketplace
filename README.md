@@ -29,7 +29,7 @@ To use this project, you'll need to do the following:
     (this was included in the `.gitignore` file to prevent the password from being exposed on Github):
 
   ```env
-  # Database Connection Url for connectioning to your local database. 
+  # Database Connection Url for connectioning to your local database.
   DEV_DATABASE_URL='mysql://[db_username]:[db_password]@[db_host]/[db_name]'
   ```
 
@@ -66,13 +66,13 @@ This file will be imported by `config/config.json` while running on your compute
 _Dependencies:_
 
 - [bcrypt](https://www.npmjs.com/package/bcrypt) - library to hash passwords.
-- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Sequelize SessionStore for Express/Connect 
+- [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) - Sequelize SessionStore for Express/Connect
 - [dotenv](https://www.npmjs.com/package/dotenv) - Loads environment variables from .env for nodejs projects.
-- [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node. 
+- [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
 - [express-handlebars](https://www.npmjs.com/package/express-handlebars) - Handlebars view engine for Express
-- [express-session](https://www.npmjs.com/package/express-session) - session middleware for Express 
+- [express-session](https://www.npmjs.com/package/express-session) - session middleware for Express
 - [mysql2](https://www.npmjs.com/package/mysql2) - MySQL client for Node.js
-- [passport](https://www.npmjs.com/package/passport) - Authentication for Node.js. 
+- [passport](https://www.npmjs.com/package/passport) - Authentication for Node.js.
 - [sequelize](https://www.npmjs.com/package/sequelize) - promise-based Node.js ORM
 
 _Devevelopment Dependencies:_

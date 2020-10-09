@@ -7,7 +7,6 @@ const op = Sequelize.Op
 router.get('/user/status', (req, res) => {
   console.log(req.user)
   res.send({ user: req.isAuthenticated() })
-
 })
 
 // find all categories for the navbar dropdown
@@ -43,7 +42,7 @@ router.get('/cart/info', (req, res) => {
         cartInfo.totalCost = totalCost.toFixed('2')
         cartInfo.uniqueItems = uniqueItems
         cartInfo.totalItems = totalItems
-        res.send({ cartInfo })
+        res.json({ cartInfo })
       })
   } else {
     res.send({})
@@ -57,7 +56,8 @@ router.get('/', (req, res) => {
       attributes: ['id', 'name', 'description', 'image_name'],
       order: [['id', 'ASC']]
     })
-    .then(category => {
+    .then(dbCategory => {
+      category = JSON.parse(JSON.stringify(dbCategory))
       if (req.isAuthenticated()) {
         res.render('categories', { category })
       } else {
@@ -74,7 +74,8 @@ router.get('/category/:id', (req, res) => {
       where: { categoryId: req.params.id },
       order: [['id', 'ASC']]
     })
-    .then(categoryitems => {
+    .then(dbCategoryItems => {
+      categoryitems = JSON.parse(JSON.stringify(dbCategoryItems))
       if (req.isAuthenticated()) {
         res.render('category_items', { categoryitems })
       } else {
@@ -100,8 +101,10 @@ router.get('/search/:criteria', (req, res) => {
       },
       order: [['id', 'ASC']]
     })
-    .then(categoryitems => {
+    .then(dbCategoryItems => {
+      categoryitems = JSON.parse(JSON.stringify(dbCategoryItems))
       if (req.isAuthenticated()) {
+        
         res.render('category_items', { categoryitems })
       } else {
         res.render('guest_category_items', { layout: 'guest', categoryitems })
@@ -142,16 +145,15 @@ router.get('/register', (req, res) => {
 // user account page
 router.get('/account', (req, res) => {
   if (req.isAuthenticated()) {
-    db.User
-      .findOne({
-        attributes: ['id', 'username', 'email'],
-        where: {
-          id: req.user.id
-        }
-      })
-      .then(account => {
-        res.render('account', { account })
-      })
+    db.User.findOne({
+      attributes: ['id', 'username', 'email'],
+      where: {
+        id: req.user.id
+      }
+    }).then(dbAccount => {
+      const account = JSON.parse(JSON.stringify(dbAccount))
+      res.render('account', { account })
+    })
   } else {
     res.redirect('/login')
   }
@@ -166,7 +168,11 @@ router.get('/account/orders', (req, res) => {
         where: { userId: req.user.id },
         order: [['id', 'ASC']]
       })
-      .then(orderHistory => res.render('order_history', { orderHistory }))
+      .then(dbOrderHistory => {
+        const orderHistory = JSON.parse(JSON.stringify(dbOrderHistory))
+        return res.render('order_history', { orderHistory })
+      })
+      .catch(dbError => console.log(dbError))
   } else {
     res.redirect('/login')
   }
@@ -189,7 +195,10 @@ router.get('/account/orders/:id', (req, res) => {
           }
         ]
       })
-      .then(order => {
+      .then(dbOrder => {
+        console.log(dbOrder)
+        const order = JSON.parse(JSON.stringify(dbOrder))
+        console.log(order)
         res.render('order_details', { order })
       })
   } else {
@@ -210,26 +219,20 @@ router.get('/cart', (req, res) => {
       .then(data => {
         let totalCost = 0
         let totalItems = 0
-        const cart = []
-        for (let i = 0; i < data.length; i++) {
-          const tempObj = {}
-          totalItems += data[i].num
-          totalCost += data[i].num * data[i].each_price
-          tempObj.id = data[i].id
-          tempObj.num = data[i].num
-          tempObj.each_price = data[i].each_price
-          tempObj.total_price = (data[i].num * data[i].each_price).toFixed(2)
-          tempObj.productId = data[i].productId
-          tempObj.product = data[i].product
-          cart.push(tempObj)
-        }
-        totalCost = totalCost.toFixed(2)
+        const responseData = data.map(items => {
+          const cartItem = items.dataValues
+          totalCost += cartItem.num * cartItem.each_price
+          totalItems += cartItem.num
+          cartItem.total_price = (cartItem.num * cartItem.each_price).toFixed(2)
+          return JSON.parse(JSON.stringify(cartItem))
+        })
         res.render('checkout', {
-          cart,
-          cart_total: totalCost,
+          cart: responseData,
+          cart_total: totalCost.toFixed(2),
           total_items: totalItems
         })
       })
+      .catch(dbError => console.error(dbError))
   } else {
     res.redirect('/login')
   }

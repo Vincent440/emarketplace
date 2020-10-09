@@ -16,11 +16,11 @@
         {{#if orderHistory}}
         {{#each orderHistory}}
         <tr title="Click the order ID to view order details">
-          <td class="order-id-row" scope="row"><a class="badge badge-info py-2" href="/account/orders/{{dataValues.id}}"><span class="d-none d-md-inline">View order </span>ID:
-              {{dataValues.id}}</a></td>
+          <td class="order-id-row" scope="row"><a class="badge badge-info py-2" href="/account/orders/{{id}}"><span class="d-none d-md-inline">View order </span>ID:
+              {{id}}</a></td>
           <td class="total-cost-row" scope="row"><i class="fas fa-dollar-sign d-none d-sm-inline"></i>
-            {{dataValues.order_total}}</td>
-          <th class="date-row" scope="row"><small>{{dataValues.createdAt}}</small></th>
+            {{order_total}}</td>
+          <th class="date-row" scope="row"><small>{{createdAt}}</small></th>
         </tr>
         {{/each}}
         {{else}}

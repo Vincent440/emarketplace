@@ -8,16 +8,16 @@
   <div class="col-10 col-md-6 col-lg-4 mx-auto">
     <div class="card p-1 m-2 text-center shadow-lg rounded-lg">
       <div class="card-header text-secondary px-0 px-0">
-        <h4><span class="badge badge-pill badge-primary"> Item: </span> {{dataValues.name}}</h4>
+        <h4><span class="badge badge-pill badge-primary"> Item: </span> {{name}}</h4>
       </div>
       <div class="card-body p-1 font-weight-bold">
-        <img src="../images/{{dataValues.image_name}}" class="item-image" alt="Item Display image">
-        <p class="card-text">{{dataValues.description}}</p>
-        <p class="card-text">ItemID: <span class="badge badge-pill badge-primary py-2 mt-1 mb-0">{{dataValues.id}}</span> |
-          Cost: <span class="badge badge-pill badge-primary py-2 mt-1 mb-0"> ${{dataValues.price}}</span></p>
+        <img src="../images/{{image_name}}" class="item-image" alt="Item Display image">
+        <p class="card-text">{{description}}</p>
+        <p class="card-text">ItemID: <span class="badge badge-pill badge-primary py-2 mt-1 mb-0">{{id}}</span> |
+          Cost: <span class="badge badge-pill badge-primary py-2 mt-1 mb-0"> ${{price}}</span></p>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn badge-pill btn-sm btn-primary add-item stretched-link" data-id="{{dataValues.id}}" data-price="{{dataValues.price}}" value="{{dataValues.id}}" data-toggle="tooltip" title="Add {{dataValues.name}} to your cart.">
+        <button type="submit" class="btn badge-pill btn-sm btn-primary add-item stretched-link" data-id="{{id}}" data-price="{{price}}" value="{{id}}" data-toggle="tooltip" title="Add {{name}} to your cart.">
           Add To Cart <i class="fas fa-cart-plus"></i>
         </button>
       </div>

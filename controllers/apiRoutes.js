@@ -6,7 +6,7 @@ const passport = require('../config/passport')
 router.delete('/api/cart', (req, res) => {
   db.cart_items
     .destroy({
-      where: { userId: req.user.id, id: req.body.id }
+      where: { UserId: req.user.id, id: req.body.id }
     })
     .then(data => {
       if (data.id) {
@@ -42,7 +42,7 @@ router.post('/api/cart', (req, res) => {
   console.log(req.body)
   db.cart_items
     .findOrCreate({
-      where: { userId: req.user.id, productId: req.body.productId },
+      where: { UserId: req.user.id, productId: req.body.productId },
       defaults: {
         num: parseInt(req.body.num),
         each_price: req.body.each_price,
@@ -115,7 +115,7 @@ router.post('/api/cart/submitted', (req, res, next) => {
 router.post('/api/cart/submitted', (req, res) => {
   db.cart_items
     .destroy({
-      where: { userId: req.user.id }
+      where: { UserId: req.user.id }
     })
     .then()
 })
@@ -189,7 +189,6 @@ router.post(
   '/api/account/login',
   passport.authenticate('local'),
   (req, res) => {
-    console.log(req.body)
     res.send('success').end()
   }
 )

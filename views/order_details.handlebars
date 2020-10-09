@@ -21,18 +21,18 @@
       </thead>
       <tbody>
         {{#if order}}
-        {{#each order.dataValues.order_items}}
+        {{#each order.order_items}}
         <tr>
-          <th class="name-row" scope="row" title="Item: {{dataValues.product.dataValues.name}}: {{dataValues.product.dataValues.description}}">
-            {{dataValues.product.dataValues.name}}</th>
-          <td class="cost-row" scope="row" title="Item: {{dataValues.product.dataValues.name}} Cost: ${{dataValues.each_price}} "><i class="fas fa-dollar-sign"></i> {{dataValues.each_price}}</td>
-          <td class="amount-row" scope="row" title="Number of this item ordered: {{dataValues.num}}">{{dataValues.num}}
+          <th class="name-row" scope="row" title="Item: {{product.name}}: {{product.description}}">
+            {{product.name}}</th>
+          <td class="cost-row" scope="row" title="Item: {{product.name}} Cost: ${{each_price}} "><i class="fas fa-dollar-sign"></i> {{each_price}}</td>
+          <td class="amount-row" scope="row" title="Number of this item ordered: {{num}}">{{num}}
           </td>
         </tr>
         {{/each}}
         <tr>
           <th colspan="1" title="Total cost for this order: {{order.order_total}}">Total Paid: <span id="cart-item-cost" class="badge badge-primary p-2">{{order.order_total}}</span> </th>
-          <td colspan="2" title="Number of unique items on this order: {{order.dataValues.order_items.length}}"><span class="d-none d-lg-inline">Unique items</span> Ordered: <span id="cart-item-quantity" class="badge badge-primary p-2">{{order.dataValues.order_items.length}}</span></td>
+          <td colspan="2" title="Number of unique items on this order: {{order.order_items.length}}"><span class="d-none d-lg-inline">Unique items</span> Ordered: <span id="cart-item-quantity" class="badge badge-primary p-2">{{order.order_items.length}}</span></td>
         </tr>
         {{else}}
         <tr>
