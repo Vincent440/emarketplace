@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const Sequelize = require('sequelize')
-const op = Sequelize.Op
-
 const db = require('../models')
+const op = Sequelize.Op
 
 // find out if the user is logged in
 router.get('/user/status', (req, res) => {
+  console.log(req.user)
   res.send({ user: req.isAuthenticated() })
+
 })
 
 // find all categories for the navbar dropdown
@@ -27,7 +28,7 @@ router.get('/cart/info', (req, res) => {
     db.cart_items
       .findAll({
         attributes: ['id', 'num', 'each_price', 'productId'],
-        where: { userId: req.user }
+        where: { userId: req.user.id }
       })
       .then(cart => {
         const cartInfo = {}
@@ -121,6 +122,7 @@ router.get('/logout', (req, res) => {
 
 // login page
 router.get('/login', (req, res) => {
+  console.log(req.isAuthenticated())
   if (req.isAuthenticated()) {
     res.redirect('/')
   } else {
@@ -140,11 +142,11 @@ router.get('/register', (req, res) => {
 // user account page
 router.get('/account', (req, res) => {
   if (req.isAuthenticated()) {
-    db.users
+    db.User
       .findOne({
         attributes: ['id', 'username', 'email'],
         where: {
-          id: req.user
+          id: req.user.id
         }
       })
       .then(account => {
@@ -161,7 +163,7 @@ router.get('/account/orders', (req, res) => {
     db.orders
       .findAll({
         attributes: ['id', 'order_total', 'createdAt'],
-        where: { userId: req.user },
+        where: { userId: req.user.id },
         order: [['id', 'ASC']]
       })
       .then(orderHistory => res.render('order_history', { orderHistory }))
@@ -176,7 +178,7 @@ router.get('/account/orders/:id', (req, res) => {
     db.orders
       .findOne({
         attributes: ['id', 'order_total', 'createdAt'],
-        where: { id: req.params.id, userId: req.user },
+        where: { id: req.params.id, userId: req.user.id },
         include: [
           {
             model: db.order_items,
@@ -201,7 +203,7 @@ router.get('/cart', (req, res) => {
     db.cart_items
       .findAll({
         attributes: ['id', 'num', 'each_price', 'productId'],
-        where: { userId: req.user },
+        where: { userId: req.user.id },
         order: [['id', 'ASC']],
         include: [{ model: db.products, attributes: ['name', 'description'] }]
       })
@@ -234,7 +236,7 @@ router.get('/cart', (req, res) => {
 })
 
 // catch all for undefined routes that goes to our 404 error page
-router.get('*', (req, res) => {
+router.get('/*', (req, res) => {
   res.render('error')
 })
 

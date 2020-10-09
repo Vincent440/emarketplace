@@ -29,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
   Product.associate = models => {
-    Product.hasMany(models.reviews, {
-      foreignKey: { name: 'productId', allowNull: false },
-      onDelete: 'cascade'
-    })
     Product.hasMany(models.order_items, {
       foreignKey: { name: 'productId', allowNull: false },
       onDelete: 'cascade'

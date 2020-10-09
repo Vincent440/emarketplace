@@ -5,13 +5,7 @@ $(document).ready(() => {
   $.get('/category/list', data => {
     data.categoryList.forEach(element =>
       $('#dropdownItems').append(
-        "<a class='dropdown-item' href='/category/" +
-          element.id +
-          " ' title='" +
-          element.description +
-          "'>" +
-          element.name +
-          '</a>'
+        `<a class="dropdown-item" href="/category/${element.id}" title="${element.description}">${element.name}</a>`
       )
     )
   })
@@ -40,12 +34,13 @@ $(document).ready(() => {
         .val()
         .trim()
     }
-    $.post('/api/account/login', loginCheck).then(res => {
-      if (res === 'success') {
+    $.post('/api/account/login', loginCheck).then(loginResponse => {
+      console.log(loginResponse)
+      if (loginResponse === 'success') {
         $(location).attr('href', '/')
       } else {
         $('#login_error').removeClass('invisible')
-        $('#login_error').text(res)
+        $('#login_error').text(loginResponse)
       }
     })
   })
@@ -119,13 +114,13 @@ $(document).ready(() => {
       order_total: total
     }
     $.post('/api/cart/submitted', orderTotal).then(res => {
-      $(location).attr('href', '/account/orders/' + res.orderId) // '/account/orders/'+res.orderId
+      $(location).attr('href', `/account/orders/${res.orderId}`) // '/account/orders/'+res.orderId
     })
   })
   // Search Button
   $('#navbar-search-btn').on('click', event => {
     event.preventDefault()
     const search = $('#navbar-search-input').val()
-    $(location).attr('href', '/search/' + search)
+    $(location).attr('href', `/search/${search}`)
   })
 })

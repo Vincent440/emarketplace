@@ -36,24 +36,18 @@ To use this project, you'll need to do the following:
 This file will be imported by `config/config.json` while running on your computer locally because of the following changes to the `config/config.json` file.
 
 ```json
-  {
-    "development": {
-      "use_env_variable": "DEVELOPMENT_DB_URL",
-      "dialect": "mysql"
-    },
-    "test": {
-      "username": "root",
-      "password": null,
-      "database": "database_test",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    },
-    "production": {
-      "use_env_variable": "JAWSDB_URL",
-      "dialect": "mysql"
-    }
+{
+  "development": {
+    "use_env_variable": "DEVELOPMENT_DB_URL"
+  },
+  "test": {
+    "use_env_variable": "TEST_DB_URL",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL"
   }
-
+}
 ```
 
 - run 'server.js' to dynamically create the required tables
