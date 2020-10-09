@@ -8,8 +8,7 @@
       <thead class="thead-dark">
         <tr>
           <th class="order-id-row" scope="col"><span class="d-none d-lg-inline">Order-</span>ID</th>
-          <th class="total-cost-row" scope="col"><i class="fas fa-dollar-sign"> Total <span
-                class="d-none d-lg-inline">Cost</span></i></th>
+          <th class="total-cost-row" scope="col"><i class="fas fa-dollar-sign"> Total <span class="d-none d-lg-inline">Cost</span></i></th>
           <th class="date-row" scope="col">Order Date</th>
         </tr>
       </thead>
@@ -17,8 +16,7 @@
         {{#if orderHistory}}
         {{#each orderHistory}}
         <tr title="Click the order ID to view order details">
-          <td class="order-id-row" scope="row"><a class="badge badge-info py-2"
-              href="/account/orders/{{dataValues.id}}"><span class="d-none d-md-inline">View order </span>ID:
+          <td class="order-id-row" scope="row"><a class="badge badge-info py-2" href="/account/orders/{{dataValues.id}}"><span class="d-none d-md-inline">View order </span>ID:
               {{dataValues.id}}</a></td>
           <td class="total-cost-row" scope="row"><i class="fas fa-dollar-sign d-none d-sm-inline"></i>
             {{dataValues.order_total}}</td>
@@ -27,16 +25,15 @@
         {{/each}}
         {{else}}
         <tr>
-          <th scope="row" colspan="3" class="text-danger text-dark bg-warning py-3">No past orders to display. <i
-              class="fas fa-cart-plus"></i></th>
+          <th scope="row" colspan="3" class="text-danger text-dark bg-warning py-3">No past orders to display. <i class="fas fa-cart-plus"></i></th>
         </tr>
         {{/if}}
       </tbody>
     </table>
     {{#if orderHistory}}
-      <caption class=""><i class="fas fa-receipt text-light"> Order History </i> <i class="fas fa-arrow-circle-up text-light"></i></caption>
+    <caption class=""><i class="fas fa-receipt text-light"> Order History </i> <i class="fas fa-arrow-circle-up text-light"></i></caption>
     {{else}}
-      <caption><i class="fas fa-receipt">No previously placed orders, Once you place an order they will show up
+    <caption><i class="fas fa-receipt">No previously placed orders, Once you place an order they will show up
         here.</i><i class="fas fa-arrow-circle-up"></i></caption>
     {{/if}}
     <ul class="nav nav-pills nav-justified">

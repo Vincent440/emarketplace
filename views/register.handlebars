@@ -1,40 +1,37 @@
 {{!-- Account creation page --}}
 <div class="row d-flex justify-content-center">
   <div class="col-sm-11 col-md-9 shadow-lg p-4 p-lg-5 my-4 my-lg-5 bg-white rounded-lg">
-  <form>
-    <!-- Account creation page JS in form.js / -->
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="create-email">Email</label>
-        <input type="email" class="form-control" id="create-email" placeholder="Email">
+    <form>
+      <!-- Account creation page JS in form.js / -->
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="create-email">Email</label>
+          <input type="email" class="form-control" id="create-email" placeholder="Email">
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="create-username">Username</label>
+          <input type="text" class="form-control" id="create-username" placeholder="Username" autocomplete="username">
+        </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <label for="create-username">Username</label>
-        <input type="text" class="form-control" id="create-username" placeholder="Username" autocomplete="username">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="create-password">Password</label>
+          <input type="password" class="form-control" id="create-password" placeholder="Password" autocomplete="new-password">
+          <small id="create-password-help" class="text-muted">Password must be over at least 6 characters</small>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="create-password-verify">Verify Password</label>
+          <input type="password" class="form-control" id="create-password-verify" placeholder="Verify password" autocomplete="new-password">
+          <small id="create-password-verify-help" class="text-muted">Passwords must match</small>
+        </div>
       </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="create-password">Password</label>
-        <input type="password" class="form-control" id="create-password" placeholder="Password"
-          autocomplete="new-password">
-        <small id="create-password-help" class="text-muted">Password must be over at least 6 characters</small>
+      <div id="register_error" class="alert alert-warning font-weight-bolder text-center invisible text-break" role="alert">
       </div>
-      <div class="form-group col-md-6 ">
-        <label for="create-password-verify">Verify Password</label>
-        <input type="password" class="form-control" id="create-password-verify" placeholder="Verify password"
-          autocomplete="new-password">
-        <small id="create-password-verify-help" class="text-muted">Passwords must match</small>
+      <div class="m-auto w-75 px-4">
+        <button id="create-new-account" type="submit" class="btn btn-primary btn-block">Create Account<i class="ml-3 fas fa-user-plus"></i></button>
       </div>
-    </div>
-    <div id="register_error" class="alert alert-warning font-weight-bolder text-center invisible text-break" role="alert">
-    </div>
-    <div class="m-auto w-75 px-4">
-      <button id="create-new-account" type="submit" class="btn btn-primary btn-block">Create Account<i
-          class="ml-3 fas fa-user-plus"></i></button>
-    </div>
-  </form>
-</div>
-<script src="/js/register.js"></script>
+    </form>
+  </div>
+  <script src="/js/register.js"></script>

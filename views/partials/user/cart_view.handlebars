@@ -2,61 +2,63 @@
 <table class="table table-sm table-hover table-striped table-dark text-center m-auto">
 
   <thead class="thead-light">
-      <tr>
-          {{#if cart}}
-            <th id="name-row-head" class="px-0" title="Name of Item" scope="col">Item</th>
-            <th id="each-cost-row-head" title="Each Cost of item in US$" scope="col"><i class="fas fa-dollar-sign d-none d-lg-inline"></i> Cost<span class="d-none d-lg-inline"> Per Item</span></th>
-            <th id="total-cost-row-head" title="Total Cost of items in US$" scope="col"><i class="fas fa-dollar-sign"></i> Total <span class="d-none d-lg-inline">Cost</span></th>
-            <th id="update-row-head" title="Quantity ordering of Item" scope="col"><span class="d-none d-lg-inline">Cart </span>Quantity</th>
-            <th id="delete-row-head" title="Remove item from cart by clicking the X" scope="col"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Remove</span> </th>
-        {{/if}}
-      </tr>
-  </thead>
-  
-  <tbody>
+    <tr>
       {{#if cart}}
-          {{#each cart}}
-              <tr>
-                  {{#with product}}
-                      <td class="name-row text-center px-0" scope="row" title="Item {{name}}: {{description}}">{{name}}</td>
-                  {{/with}}
-                  <td class="cost-row" data-cost="{{each_price}}" data-quantity="{{num}}"  title="{{product.name}}: ${{each_price}} "><i class="fas fa-dollar-sign"></i> {{each_price}}</td>
-                  <td class="totals-row" data-cost="{{total_price}}" data-quantity="{{num}}"  title="{{product.name}}: {{num}} x {{each_price}} = ${{total_price}} "><i class="fas fa-dollar-sign"></i> {{total_price}}</td>
-                  <td class="update-row" title="Update Cart Quantity">
-                      <form class="input-group input-group-sm">
-                          <div class="input-group-append">
-                              <button class="update-quantity badge-dark badge badge-sm" type="submit"><i class="fas fa-cart-plus"></i></button>
-                          </div>
-                          <input type="number" class="form-control form-control-sm p-0 m-0 mx-auto text-center" data-itemid="{{id}}" name="quantity" min="1" value="{{num}}">
-                      </form>
-                  </td>
-                  <td class="delete-row" title="Remove item from Cart">
-                     <button type="button" class="delete-item badge badge-sm badge-danger px-lg-2 mr-3 mr-md-5" data-itemid="{{id}}"><i class="fas fa-trash"></i></button>
-                  </td> 
-              </tr>
-          {{/each}}
-          <tr>
-              <td colspan="2" title="Cart total cost">Total Cost of items: <span id="cart-item-cost" class="badge badge-primary p-2">${{cart_total}}</span> </td>
-              <td colspan="3" title="Total amount of items in cart"><span class="d-none d-lg-inline">Number of items</span> Ordered: <span id="cart-item-quantity" class="badge badge-primary p-2">{{total_items}}</span></td>
-          </tr>               
-      {{else}}
-      <tr>
-          <th scope="row" colspan="4" class="text-dark bg-warning py-5"><h4>No items currently in your cart!<br> Add items to cart to make a purchase.<i class="fas fa-cart-plus"></i></h4></th>
-      </tr>
+      <th id="name-row-head" class="px-0" title="Name of Item" scope="col">Item</th>
+      <th id="each-cost-row-head" title="Each Cost of item in US$" scope="col"><i class="fas fa-dollar-sign d-none d-lg-inline"></i> Cost<span class="d-none d-lg-inline"> Per Item</span></th>
+      <th id="total-cost-row-head" title="Total Cost of items in US$" scope="col"><i class="fas fa-dollar-sign"></i> Total <span class="d-none d-lg-inline">Cost</span></th>
+      <th id="update-row-head" title="Quantity ordering of Item" scope="col"><span class="d-none d-lg-inline">Cart </span>Quantity</th>
+      <th id="delete-row-head" title="Remove item from cart by clicking the X" scope="col"><i class="fas fa-trash"></i><span class="d-none d-lg-inline"> Remove</span> </th>
       {{/if}}
-  </tbody>    
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#if cart}}
+    {{#each cart}}
+    <tr>
+      {{#with product}}
+      <td class="name-row text-center px-0" scope="row" title="Item {{name}}: {{description}}">{{name}}</td>
+      {{/with}}
+      <td class="cost-row" data-cost="{{each_price}}" data-quantity="{{num}}" title="{{product.name}}: ${{each_price}} "><i class="fas fa-dollar-sign"></i> {{each_price}}</td>
+      <td class="totals-row" data-cost="{{total_price}}" data-quantity="{{num}}" title="{{product.name}}: {{num}} x {{each_price}} = ${{total_price}} "><i class="fas fa-dollar-sign"></i> {{total_price}}</td>
+      <td class="update-row" title="Update Cart Quantity">
+        <form class="input-group input-group-sm">
+          <div class="input-group-append">
+            <button class="update-quantity badge-dark badge badge-sm" type="submit"><i class="fas fa-cart-plus"></i></button>
+          </div>
+          <input type="number" class="form-control form-control-sm p-0 m-0 mx-auto text-center" data-itemid="{{id}}" name="quantity" min="1" value="{{num}}">
+        </form>
+      </td>
+      <td class="delete-row" title="Remove item from Cart">
+        <button type="button" class="delete-item badge badge-sm badge-danger px-lg-2 mr-3 mr-md-5" data-itemid="{{id}}"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+    {{/each}}
+    <tr>
+      <td colspan="2" title="Cart total cost">Total Cost of items: <span id="cart-item-cost" class="badge badge-primary p-2">${{cart_total}}</span> </td>
+      <td colspan="3" title="Total amount of items in cart"><span class="d-none d-lg-inline">Number of items</span> Ordered: <span id="cart-item-quantity" class="badge badge-primary p-2">{{total_items}}</span></td>
+    </tr>
+    {{else}}
+    <tr>
+      <th scope="row" colspan="4" class="text-dark bg-warning py-5">
+        <h4>No items currently in your cart!<br> Add items to cart to make a purchase.<i class="fas fa-cart-plus"></i></h4>
+      </th>
+    </tr>
+    {{/if}}
+  </tbody>
 </table>
 <caption title="Viewing your shopping cart above" class=""><i class="fas fa-arrow-circle-up text-light"> Your Shopping Cart</i> <i class="fas fa-shopping-cart text-light"></i></caption>
 {{!-- Make purchase button if there is a cart --}}
 {{#if cart}}
-    <div class="m-auto w-50 px-2">
-        <button type="button" id="display-payment-button" data-totalcost="{{cart_total}}" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#payment-modal">
-            <i class="fas fa-dollar-sign"> Pay </i> <i class="fas fa-arrow-right"> </i> <i class="fas fa-shopping-cart"> Checkout</i>
-        </button>
-    </div>
-    {{>user/payment_modal}}
+<div class="m-auto w-50 px-2">
+  <button type="button" id="display-payment-button" data-totalcost="{{cart_total}}" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#payment-modal">
+    <i class="fas fa-dollar-sign"> Pay </i> <i class="fas fa-arrow-right"> </i> <i class="fas fa-shopping-cart"> Checkout</i>
+  </button>
+</div>
+{{>user/payment_modal}}
 {{else}}
-    <div class="m-auto w-50 px-sm-1 px-md-5">
-        <a class="btn btn-primary btn-block mb-3" href="/"><i class="fas fa-store-alt"> Browse All Categories</i></a>
-    </div>
+<div class="m-auto w-50 px-sm-1 px-md-5">
+  <a class="btn btn-primary btn-block mb-3" href="/"><i class="fas fa-store-alt"> Browse All Categories</i></a>
+</div>
 {{/if}}

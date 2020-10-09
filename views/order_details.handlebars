@@ -23,22 +23,16 @@
         {{#if order}}
         {{#each order.dataValues.order_items}}
         <tr>
-          <th class="name-row" scope="row"
-            title="Item: {{dataValues.product.dataValues.name}}: {{dataValues.product.dataValues.description}}">
+          <th class="name-row" scope="row" title="Item: {{dataValues.product.dataValues.name}}: {{dataValues.product.dataValues.description}}">
             {{dataValues.product.dataValues.name}}</th>
-          <td class="cost-row" scope="row"
-            title="Item: {{dataValues.product.dataValues.name}} Cost: ${{dataValues.each_price}} "><i
-              class="fas fa-dollar-sign"></i> {{dataValues.each_price}}</td>
+          <td class="cost-row" scope="row" title="Item: {{dataValues.product.dataValues.name}} Cost: ${{dataValues.each_price}} "><i class="fas fa-dollar-sign"></i> {{dataValues.each_price}}</td>
           <td class="amount-row" scope="row" title="Number of this item ordered: {{dataValues.num}}">{{dataValues.num}}
           </td>
         </tr>
         {{/each}}
         <tr>
-          <th colspan="1" title="Total cost for this order: {{order.order_total}}">Total Paid: <span id="cart-item-cost"
-              class="badge badge-primary p-2">{{order.order_total}}</span> </th>
-          <td colspan="2" title="Number of unique items on this order: {{order.dataValues.order_items.length}}"><span
-              class="d-none d-lg-inline">Unique items</span> Ordered: <span id="cart-item-quantity"
-              class="badge badge-primary p-2">{{order.dataValues.order_items.length}}</span></td>
+          <th colspan="1" title="Total cost for this order: {{order.order_total}}">Total Paid: <span id="cart-item-cost" class="badge badge-primary p-2">{{order.order_total}}</span> </th>
+          <td colspan="2" title="Number of unique items on this order: {{order.dataValues.order_items.length}}"><span class="d-none d-lg-inline">Unique items</span> Ordered: <span id="cart-item-quantity" class="badge badge-primary p-2">{{order.dataValues.order_items.length}}</span></td>
         </tr>
         {{else}}
         <tr>
