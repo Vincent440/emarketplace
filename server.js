@@ -4,16 +4,20 @@ const express = require('express')
 const session = require('express-session')
 const passport = require('passport')
 const exphbs = require('express-handlebars')
-const SessionStore  = require('connect-session-sequelize')(session.Store)
+const SessionStore = require('connect-session-sequelize')(session.Store)
 const db = require('./models')
 const apiRoutes = require('./controllers/apiRoutes.js')
 const htmlRoutes = require('./controllers/htmlRoutes.js')
+
 const PORT = process.env.PORT || 3000
+// In `.env` file add `SYNC_DB=true` to drop database tables.
+const dbSync = { force: process.env.SYNC_DB || false }
 
 const app = express()
-const sequelizeSessionStore = new SessionStore({
-  db: db.sequelize
-});
+const sequelizeSessionStore = new SessionStore({ db: db.sequelize })
+
+app.engine('handlebars', exphbs({ defaultLayout: 'user' }))
+app.set('view engine', 'handlebars')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -23,28 +27,23 @@ app.use(
     secret: 'the-emarketplace secret',
     store: sequelizeSessionStore,
     resave: false,
-    // proxy: true // if you do SSL outside of node.
     saveUninitialized: false,
-    cookie: {// Make sure to set maxAge, otherwise the browser might delete the cookie on browser exit
+    cookie: {
+      // Make sure to set maxAge, otherwise the browser might delete the cookie on browser exit
       maxAge: 3600000, // 3600000 1 hour in milliseconds. The expiration time of the cookie to set it as a persistent cookie.
       sameSite: true
     }
   })
 )
-
 sequelizeSessionStore.sync()
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-app.engine('handlebars', exphbs({ defaultLayout: 'user' }))
-app.set('view engine', 'handlebars')
-
 app.use(apiRoutes)
 app.use(htmlRoutes)
 
 db.sequelize
-  .sync({ force: false })
+  .sync(dbSync)
   .then(() => {
     app.listen(PORT, () =>
       console.log(`\nServer listening on: http://localhost:${PORT}`)
