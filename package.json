@@ -9,15 +9,10 @@
     "dev": "nodemon server.js",
     "format": "prettier-standard --format"
   },
-  "engines": {
-    "node": ">=12.13.0",
-    "yarn": ">=1.19.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/letscook1/project2.git"
   },
-  "keywords": [],
   "author": "Vincent Shury",
   "contributors": [
     "Mike Gullo",
